@@ -1,1 +1,5 @@
+nomkl
+scipy
 numpy
+pandas
+bokeh
