@@ -1,16 +1,33 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Hello, World!</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div>
-  			<h1>User Input</h1>
-            <h3>Please enter a stock ticker eg. GOOG, and checck desired features</h3>
-		</div>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>Hello, World!</title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+</head>
+<body>
+<div>
+    <h1>User Input</h1>
+    <h3>Please enter a stock ticker eg. GOOG, and checck desired features</h3>
+    <div>
+        <input type="text" name="stocksticker" id="stockID"><br>
+        <button type="button" onclick="getStockdata()">Submit</button>
+    </div>
+</div>
+<script>
+    function getStockdata() {
+        var stockinput = document.getElementById("stockID");
+        console.log(stockinput.value);
+        $.ajax({
+                    method: "PUT",
+                    data: {stocksticker: stockinput.value},
+                    url: "/stockprice"
+                })
+                .done(function (data) {
+                    console.log(data)
+                })
+    }
+</script>
+</body>
 </html>
