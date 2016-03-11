@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Hello, World!</title>
+    <title>Stock Prices</title>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 </head>
@@ -10,10 +10,14 @@
 <div>
     <h1>User Input</h1>
     <h3>Please enter a stock ticker eg. GOOG, and checck desired features</h3>
-    <div>
-        <input type="text" name="stocksticker" id="stockID"><br>
-        <button type="button" onclick="getStockdata()">Submit</button>
-    </div>
+    <form action="/stockplot" method="POST">
+        <span>Ticker symbol: </span> <input type="text" name="stocksticker">
+        <div><input type="checkbox" name="check" value="Close">Closing price</div>
+        <div><input type="checkbox" name="check" value="Adj. Close">Adjusted closing price</div>
+        <div><input type="checkbox" name="check" value="Open">Opening price</div>
+        <div><input type="checkbox" name="check" value="Adj. Open">Adjusted opening price</div>
+        <input type="submit" name="my-form" value="Submit">
+    </form>
 </div>
 <script>
     function getStockdata() {
