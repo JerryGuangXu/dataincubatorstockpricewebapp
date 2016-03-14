@@ -9,7 +9,7 @@
 <body>
 <div>
     <h1>User Input</h1>
-    <h3>Please enter a stock ticker eg. GOOG, and checck desired features</h3>
+    <h3>Please enter a stock ticker eg. AAPL, and checck desired features</h3>
     <form action="/stockplot" method="POST">
         <span>Ticker symbol: </span> <input type="text" name="stocksticker">
         <div><input type="checkbox" name="check" value="Close">Closing price</div>
@@ -18,6 +18,9 @@
         <div><input type="checkbox" name="check" value="Adj. Open">Adjusted opening price</div>
         <input type="submit" name="my-form" value="Submit">
     </form>
+    <h3 style="color: red">
+        {{ errormessage | safe }}
+    </h3>
 </div>
 <script>
     function getStockdata() {
