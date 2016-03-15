@@ -5,36 +5,42 @@
     <title>Stock Prices</title>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
+<style>
+    body {
+        background: #eee;
+    }
+</style>
 <body>
 <div>
-    <h1>User Input</h1>
-    <h3>Please enter a stock ticker eg. AAPL, and checck desired features</h3>
-    <form action="/stockplot" method="POST">
-        <span>Ticker symbol: </span> <input type="text" name="stocksticker">
-        <div><input type="checkbox" name="check" value="Close">Closing price</div>
-        <div><input type="checkbox" name="check" value="Adj. Close">Adjusted closing price</div>
-        <div><input type="checkbox" name="check" value="Open">Opening price</div>
-        <div><input type="checkbox" name="check" value="Adj. Open">Adjusted opening price</div>
-        <input type="submit" name="my-form" value="Submit">
-    </form>
-    <h3 style="color: red">
-        {{ errormessage | safe }}
-    </h3>
+    <div class="jumbotron">
+        <h1 style="text-align: center">Stock Price Look Up</h1>
+        <img style="width: 120px; margin-left: auto;margin-right: auto; margin-top: 20px;margin-bottom: 20px; display: block" src="static/lookup.png">
+        <div style="width: 450px; margin-left: auto;margin-right: auto; margin-top: 20px" class="panel panel-default">
+            <div class="panel-heading">Please enter a stock ticker eg. AAPL.</div>
+            <div class="panel-body">
+                <div style="margin-left: auto; margin-right: auto; display: block; width: 400px">
+                    <form action="/stockplot" method="POST">
+                        <input type="text" name="stocksticker" class="form-control" placeholder="Ticker symbol:" style="margin-bottom: 20px">
+                        <div><input type="checkbox" name="check" value="Close">Closing price</div>
+                        <div><input type="checkbox" name="check" value="Adj. Close">Adjusted closing price</div>
+                        <div><input type="checkbox" name="check" value="Open">Opening price</div>
+                        <div><input type="checkbox" name="check" value="Adj. Open">Adjusted opening price</div>
+                        <input style="margin-top: 20px;" class="btn btn-success" type="submit" name="my-form" value="Submit">
+                    </form>
+                </div>
+                <h4 style="color: red">
+                    {{ errormessage | safe }}
+                </h4>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script>
-    function getStockdata() {
-        var stockinput = document.getElementById("stockID");
-        console.log(stockinput.value);
-        $.ajax({
-                    method: "PUT",
-                    data: {stocksticker: stockinput.value},
-                    url: "/stockprice"
-                })
-                .done(function (data) {
-                    console.log(data)
-                })
-    }
+
 </script>
 </body>
 </html>
